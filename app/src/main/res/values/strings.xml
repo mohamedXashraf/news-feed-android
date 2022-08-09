@@ -4,4 +4,12 @@
     <string name="error">Something went wrong! … please try again later.</string>
     <string name="author">By %1$s</string>
     <string name="open_website">Open Website</string>
+    <string name="empty_view">No News For Now!</string>
+    <string name="welcome">Welcome</string>
+    <string name="username">Mohamed Ashraf</string>
+    <string name="explore">Explore</string>
+    <string name="chat">Chat</string>
+    <string name="gallery">Gallery</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="learning">E-learning</string>
 </resources>

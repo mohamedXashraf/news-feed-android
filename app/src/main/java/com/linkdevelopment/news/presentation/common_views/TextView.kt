@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun TextView(text: String, size: Int = 24, color: Color = Color.LightGray, horizontalPadding: Int = 0, verticalPadding: Int = 0, weight: FontWeight = FontWeight.Normal, align: TextAlign = TextAlign.Start)
+fun TextView(text: String, size: Int = 24, color: Color = Color.LightGray, horizontalPadding: Int = 0, verticalPadding: Int = 0, weight: FontWeight = FontWeight.Normal, align: TextAlign = TextAlign.Start, wrapped: Boolean = false)
 {
     Text(text = text,
         modifier = Modifier.padding(horizontal = horizontalPadding.dp, vertical = verticalPadding.dp).fillMaxWidth(),

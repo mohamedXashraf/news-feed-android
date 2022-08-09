@@ -14,15 +14,25 @@ import com.google.accompanist.coil.rememberCoilPainter
 @Composable
 fun ImageView(painter: Painter)
 {
-    Image(painter = painter, contentDescription = "", modifier = Modifier.padding(16.dp).size(50.dp))
+    Image(painter = painter, contentDescription = "", modifier = Modifier.padding(16.dp).size(100.dp))
 }
 
 @Composable
 fun RemoteImageView(image: String)
 {
     Image(
-        painter = rememberCoilPainter( image),
+        painter = rememberCoilPainter(image),
         contentDescription = "",
         contentScale = ContentScale.FillWidth,
         modifier = Modifier.fillMaxWidth())
+}
+
+@Composable
+fun SmallRemoteImageView(image: String)
+{
+    Image(
+        painter = rememberCoilPainter(image),
+        contentDescription = "",
+        contentScale = ContentScale.FillWidth,
+        modifier = Modifier.size(60.dp))
 }
