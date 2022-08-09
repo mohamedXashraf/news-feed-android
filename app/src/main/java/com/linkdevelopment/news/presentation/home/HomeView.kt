@@ -113,7 +113,7 @@ private fun NewsItemView(newsItem: News, action: (News) -> Unit)
             TextView(text = newsItem.title ?: "", horizontalPadding = 16, verticalPadding = 5, color = Color.DarkGray, weight = FontWeight.SemiBold, size = 16)
             TextView(text = stringResource(id = R.string.author, newsItem.author ?: ""), horizontalPadding = 16, weight = FontWeight.Normal, size = 13)
             TextView(text = DateFormatter.format(newsItem.publishedAt ?: ""), horizontalPadding = 16, verticalPadding = 5, size = 13, align = TextAlign.End)
-            Box(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(10.dp))
         }
     }
 }

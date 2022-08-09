@@ -66,7 +66,7 @@ private fun DetailsView(news: News? = null, backAction: () -> Unit = {}, urlActi
                     }
                     TextView(text = news?.title ?: "", horizontalPadding = 16, verticalPadding = 5, color = Color.DarkGray, weight = FontWeight.SemiBold)
                     TextView(text = stringResource(id = R.string.author, news?.author ?: ""), horizontalPadding = 16, weight = FontWeight.Normal, size = 13)
-                    Box(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
                     TextView(text = news?.description ?: "", horizontalPadding = 16, verticalPadding = 10, size = 14, weight = FontWeight.Normal)
                 }
             }
