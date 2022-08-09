@@ -17,7 +17,7 @@
         android:theme="@style/Theme.NewsFeed"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.base.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.NewsFeed">
             <intent-filter>

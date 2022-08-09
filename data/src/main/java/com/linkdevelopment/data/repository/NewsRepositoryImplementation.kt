@@ -36,4 +36,11 @@ class NewsRepositoryImplementation : Repository(), NewsRepository {
         }
         return associatedPressArticles
     }
+
+    override fun getCachedArticles(): MutableList<News> {
+        val articles = mutableListOf<News>()
+        articles.addAll(nextWebArticles)
+        articles.addAll(associatedPressArticles)
+        return articles
+    }
 }

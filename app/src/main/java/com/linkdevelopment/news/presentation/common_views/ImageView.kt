@@ -1,6 +1,7 @@
 package com.linkdevelopment.news.presentation.common_views
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -22,6 +23,6 @@ fun RemoteImageView(image: String)
     Image(
         painter = rememberCoilPainter( image),
         contentDescription = "",
-        contentScale = ContentScale.Fit,
-        modifier = Modifier.size(40.dp))
+        contentScale = ContentScale.FillWidth,
+        modifier = Modifier.fillMaxWidth())
 }
