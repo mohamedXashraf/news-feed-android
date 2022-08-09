@@ -11,6 +11,6 @@ abstract class Repository {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-        return Retrofit.Builder().baseUrl("https://api.openweathermap.org/data/2.5/forecast/").client(client).addConverterFactory(GsonConverterFactory.create()).build()
+        return Retrofit.Builder().baseUrl("https://newsapi.org/v1/").client(client).addConverterFactory(GsonConverterFactory.create()).build()
     }
 }
