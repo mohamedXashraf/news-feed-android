@@ -2,7 +2,7 @@
 
 - Simple Android App for displaying News.
 
-![](https://github.com/mohamedXashraf/news-feed/blob/master/app_banner.png?raw=true)
+![](https://github.com/mohamedXashraf/news-feed/blob/master/banner.png?raw=true)
 
 - Topics:
   * Modularization.
