@@ -14,8 +14,8 @@ class NewsRepositoryImplementation : Repository(), NewsRepository {
     private var associatedPressArticles = mutableListOf<News>()
 
     override suspend fun getNextWebArticles(): MutableList<News> {
-        val response = api.getArticles("the-next-web")
         try {
+            val response = api.getArticles("the-next-web")
             if (response.status != null && response.status.equals("ok", ignoreCase = true)) {
                 nextWebArticles = response.articles ?: mutableListOf()
             }
@@ -26,8 +26,8 @@ class NewsRepositoryImplementation : Repository(), NewsRepository {
     }
 
     override suspend fun getAssociatedPressArticles(): MutableList<News> {
-        val response = api.getArticles("associated-press")
         try {
+            val response = api.getArticles("associated-press")
             if (response.status != null && response.status.equals("ok", ignoreCase = true)) {
                 associatedPressArticles = response.articles ?: mutableListOf()
             }
