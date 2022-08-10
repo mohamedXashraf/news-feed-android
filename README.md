@@ -2,7 +2,7 @@
 
 - Simple Android App for displaying News.
 
-![alt text](https://github.com/mohamedXashraf/fitness-score-dashboard/blob/master/app_banner.png?raw=true)
+![alt text](https://github.com/mohamedXashraf/news-feed/blob/master/app_banner.png?raw=true)
 
 - Topics:
   * Modularization.
