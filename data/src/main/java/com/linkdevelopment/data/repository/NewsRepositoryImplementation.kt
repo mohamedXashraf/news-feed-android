@@ -1,9 +1,12 @@
 package com.linkdevelopment.data.repository
 
+import com.google.gson.Gson
 import com.linkdevelopment.data.api.NewsAPIs
+import com.linkdevelopment.data.base.Error
 import com.linkdevelopment.data.base.Repository
 import com.linkdevelopment.domain.repository.NewsRepository
 import com.linkdevelopment.model.News
+import retrofit2.HttpException
 
 class NewsRepositoryImplementation : Repository(), NewsRepository {
 
@@ -21,6 +24,7 @@ class NewsRepositoryImplementation : Repository(), NewsRepository {
             }
         } catch (ex: Exception) {
             ex.printStackTrace()
+            if (ex is HttpException) throw parseHttpError(ex)
         }
         return nextWebArticles
     }
@@ -33,6 +37,7 @@ class NewsRepositoryImplementation : Repository(), NewsRepository {
             }
         } catch (ex: Exception) {
             ex.printStackTrace()
+            if (ex is HttpException) throw parseHttpError(ex)
         }
         return associatedPressArticles
     }
@@ -42,5 +47,13 @@ class NewsRepositoryImplementation : Repository(), NewsRepository {
         articles.addAll(nextWebArticles)
         articles.addAll(associatedPressArticles)
         return articles
+    }
+
+    private fun parseHttpError(ex: HttpException): Exception {
+        val errorBody = ex.response()?.errorBody()?.string()
+        return if (!errorBody.isNullOrEmpty()) {
+            val error = Gson().fromJson(errorBody, Error::class.java).message
+            Exception(error)
+        } else ex
     }
 }
