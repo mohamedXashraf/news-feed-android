@@ -19,4 +19,3 @@
     * APIs: Retrofit.
   * Koin (Dependency Injection).
   * Kotlin Coroutines.
-  * RxJava
