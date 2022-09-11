@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">News</string>
-    <string name="title">Link Development</string>
+    <string name="title">News Feed</string>
     <string name="error">Something went wrong! … please try again later.</string>
     <string name="author">By %1$s</string>
     <string name="open_website">Open Website</string>

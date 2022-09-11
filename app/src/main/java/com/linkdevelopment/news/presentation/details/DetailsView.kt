@@ -54,7 +54,7 @@ private fun DetailsView(news: News? = null, backAction: () -> Unit = {}, urlActi
         backgroundColor = Color.LightGray,
         topBar = { TopBar(backAction) }
     ) {
-        LazyColumn(modifier = Modifier.padding(10.dp)) {
+        LazyColumn(modifier = Modifier.padding(5.dp)) {
             item {
                 Column(modifier = Modifier
                     .padding(14.dp)
