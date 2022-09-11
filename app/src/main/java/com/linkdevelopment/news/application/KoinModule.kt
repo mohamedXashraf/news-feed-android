@@ -2,6 +2,7 @@ package com.linkdevelopment.news.application
 
 import com.linkdevelopment.data.repository.NewsRepositoryImplementation
 import com.linkdevelopment.domain.repository.NewsRepository
+import com.linkdevelopment.domain.usecase.FilterArticles
 import com.linkdevelopment.domain.usecase.GetAllArticles
 import com.linkdevelopment.domain.usecase.GetNewsById
 import com.linkdevelopment.news.presentation.details.DetailsViewModel
@@ -17,7 +18,9 @@ val koinModule = module {
 
     single { GetNewsById(get()) }
 
-    viewModel { HomeViewModel(get()) }
+    single { FilterArticles(get()) }
+
+    viewModel { HomeViewModel(get(), get()) }
 
     viewModel { DetailsViewModel(get()) }
 }

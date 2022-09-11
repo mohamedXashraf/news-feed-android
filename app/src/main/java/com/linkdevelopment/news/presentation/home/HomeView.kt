@@ -8,8 +8,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,14 +43,18 @@ fun Home(navController: NavHostController, viewModel: HomeViewModel = getViewMod
     when (val viewState = state.value)
     {
         is HomeViewState.ViewInitializationState -> viewModel.intent.value = HomeViewIntent.GetAllArticles
-        is HomeViewState.DataState -> HomeView(viewState.news) { navController.navigate("$DETAILS/${it.id}") }
+        is HomeViewState.DataState -> HomeView(viewState.news, {
+            navController.navigate("$DETAILS/${it.id}")
+        }, {
+            viewModel.intent.value = HomeViewIntent.FilterArticles(it)
+        })
         is HomeViewState.ErrorState -> Error(error = viewState.error.message ?: stringResource(id = R.string.error))
         is HomeViewState.LoadingState -> Loading()
     }
 }
 
 @Composable
-private fun HomeView(news: MutableList<News> = mutableListOf(), selectionAction: (News) -> Unit = {})
+private fun HomeView(news: MutableList<News> = mutableListOf(), selectionAction: (News) -> Unit = {}, searchAction: (String) -> Unit = {})
 {
     val context = LocalContext.current
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
@@ -58,9 +65,7 @@ private fun HomeView(news: MutableList<News> = mutableListOf(), selectionAction:
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White),
-        topBar = { TopBar {
-            scope.launch { scaffoldState.drawerState.open() }
-        }},
+        topBar = { TopBar (navigationAction = { scope.launch { scaffoldState.drawerState.open() } }, searchListener = searchAction) },
         drawerBackgroundColor = Color.White,
         drawerContent = {
             DrawerView {
@@ -80,18 +85,29 @@ private fun HomeView(news: MutableList<News> = mutableListOf(), selectionAction:
 }
 
 @Composable
-private fun TopBar(navigationAction: () -> Unit)
+private fun TopBar(navigationAction: () -> Unit, searchListener: (String) -> Unit)
 {
-    TopAppBar(
-        title = { TextView(text = stringResource(id = R.string.title), color = Color.White) },
-        elevation = 5.dp,
-        backgroundColor = PrimaryColor,
-        navigationIcon = {
-            IconButton(onClick = navigationAction) {
-                Icon(Icons.Filled.Menu, tint = Color.White, contentDescription = "")
+    val isSearchOpened = remember { mutableStateOf(false) }
+
+    if (isSearchOpened.value) {
+        SearchBarView(textWatcher = searchListener, closeAction = { isSearchOpened.value = false })
+    } else {
+        TopAppBar(
+            title = { TextView(text = stringResource(id = R.string.title), color = Color.White) },
+            elevation = 5.dp,
+            backgroundColor = PrimaryColor,
+            navigationIcon = {
+                IconButton(onClick = navigationAction) {
+                    Icon(Icons.Filled.Menu, tint = Color.White, contentDescription = "")
+                }
+            },
+            actions = {
+                IconButton(onClick = { isSearchOpened.value = true }) {
+                    Icon(Icons.Rounded.Search, "", tint = Color.White)
+                }
             }
-        },
-    )
+        )
+    }
 }
 
 @Composable
